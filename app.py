@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 import sklearn
 import pickle
 import pandas as pd
-#from flask_cors import crosorigin,CORS 
+from flask_cors import cross_origin,CORS 
 #for enable cross platform communication
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ model = pickle.load(open("flight_rf.pkl", "rb"))
 #CORS(app)
 
 @app.route("/")
-#@crosorigin()
+@cross_origin()
 def home():
     return render_template("index.html")
 
@@ -20,7 +20,7 @@ def home():
 
 
 @app.route("/predict", methods = ["GET", "POST"])
-#@crosorigin()
+@cross_origin()
 def predict():
     if request.method == "POST":
 
